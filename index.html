@@ -516,6 +516,75 @@
         </div>
       </section>
 
+      <!-- Convert List To CSV -->
+      <section class="container-fluid mx-0">
+        <div class="row mt-4">
+          <div class="col">
+            <div class="card z-index-2">
+              <div class="card-body">
+                <div class="card-header p-0">
+                  <h4 class="p-0">Masukin List Data Nya</h4>
+                </div>
+                <hr class="dark horizontal" />
+                <!-- <label for="floatingTextarea2">In</label> -->
+                <div class="form-floating">
+                  <textarea
+                    id="keywords"
+                    class="container"
+                    placeholder="Masukin Disini ya bang"
+                    id="floatingTextarea2"
+                    style="height: 200px"
+                  ></textarea>
+                </div>
+                <select
+                  class="form-control-lg btn-primary border-0"
+                  id="mySelect"
+                >
+                  <option value="1">JSON</option>
+                  <option value="2">CSV</option>
+                  
+                </select>
+                <input
+                  id="data"
+                  type="button"
+                  value="submit"
+                  class="btn btn-info my-2"
+                  onclick="rapihan()"
+                />
+                <div class="container row">
+                  <div class="col form-check p-0">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="fcustomCheck1"
+                      checked=""
+                    />
+                    <label class="custom-control-label" for="customCheck1"
+                      >Filter Local IP</label
+                    >
+                  </div>
+                  <div class="col form-check p-0">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="fcustomCheck1"
+                      checked=""
+                    />
+                    <label class="custom-control-label" for="customCheck1"
+                      >Filter Public IP</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- End OF first Section -->
+        </div>
+      </section>
+
       <div class="container-fluid py-4">
         <!-- #Tabel Section | Section Table -->
         <div class="row">

@@ -1,0 +1,4 @@
+[a-zA-Z]*-v[0-9]*
+Backups/
+modules/
+pages/
