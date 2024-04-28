@@ -47,7 +47,7 @@
       const ipAddressesInput = document.getElementById('ipAddresses').value;
       const ipAddressesArray = ipAddressesInput.split(/[\s,]+/); // Memisahkan input berdasarkan koma atau spasi
 
-      const apiKey = 'c709b008c54615f30adb52d1f0fa4a882469efccc55a11c14b09796051158fe3'; // Ganti dengan kunci API Anda
+      const apiKey = ''; // Ganti dengan kunci API Anda
 
       try {
         const ipInfoArray = await Promise.all(ipAddressesArray.map(async ipAddress => {
