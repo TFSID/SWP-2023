@@ -7,6 +7,10 @@
 <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dphs5NVR-GmO0g-9ieQ4kGChrEwLmjNBxKreKah5_ZN44Wn8lcs5EvGpEgiu0M92nfLRv24tRJOeiZAC_9j9z4y3OQIEPKhRxAWMCLGsLMwus9riQ_rZ6xeMg8x0cXbLNJBNbwA2eFC7rmmLsaLFeQjWfnXwMqffQZrWCFqzo1_nvH5F2O4o21bc_dUlzxxPAjuy1LlOK3EDnIvqzBVOV-MalXCAyd4TH0WDVk9f3L5AzHT58csuXL7Bzq6xhs3EWGPgNmgP4eNkAWaKclNU6qg1YsslhmFQ7dPvz3zcUb8" charset="UTF-8"></script></head>
 <body>
   <h1>IP Info Checker</h1>
+  <form id="apikey" action="">
+    <input name="api" type="text">
+    <button type="submit">submit key</button>
+  </form>
   <form id="ipForm">
     <label for="ipAddresses">Masukkan alamat IP (pisahkan dengan koma atau baris baru):</label>
     <textarea id="ipAddresses" name="ipAddresses" rows="5"></textarea>
@@ -15,6 +19,7 @@
   <div id="resultContainer"></div>
 
   <script>
+    
     // Fungsi untuk mengambil informasi IP dari VirusTotal
     async function getIPInfo(ipAddress, apiKey) {
       const url = `https://www.virustotal.com/api/v3/ip_addresses/${ipAddress}`;
