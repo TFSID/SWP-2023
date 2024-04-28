@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IP Info Checker</title>
+<script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dphs5NVR-GmO0g-9ieQ4kGChrEwLmjNBxKreKah5_ZN44Wn8lcs5EvGpEgiu0M92nfLRv24tRJOeiZAC_9j9z4y3OQIEPKhRxAWMCLGsLMwus9riQ_rZ6xeMg8x0cXbLNJBNbwA2eFC7rmmLsaLFeQjWfnXwMqffQZrWCFqzo1_nvH5F2O4o21bc_dUlzxxPAjuy1LlOK3EDnIvqzBVOV-MalXCAyd4TH0WDVk9f3L5AzHT58csuXL7Bzq6xhs3EWGPgNmgP4eNkAWaKclNU6qg1YsslhmFQ7dPvz3zcUb8" charset="UTF-8"></script></head>
+<body>
+  <h1>IP Info Checker</h1>
+  <form id="ipForm">
+    <label for="ipAddresses">Masukkan alamat IP (pisahkan dengan koma atau baris baru):</label>
+    <textarea id="ipAddresses" name="ipAddresses" rows="5"></textarea>
+    <button type="submit">Periksa Info</button>
+  </form>
+  <div id="resultContainer"></div>
+
+  <script>
+    // Fungsi untuk mengambil informasi IP dari VirusTotal
+    async function getIPInfo(ipAddress, apiKey) {
+      const url = `https://www.virustotal.com/api/v3/ip_addresses/${ipAddress}`;
+      const headers = {
+        'x-apikey': apiKey
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: headers
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          return data.data; // Mengembalikan data informasi IP dari VirusTotal
+        } else {
+          throw new Error('Gagal mengambil data IP dari VirusTotal.');
+        }
+      } catch (error) {
+        console.error('Terjadi kesalahan:', error);
+        throw error;
+      }
+    }
+
+    // Menangani submit form
+    document.getElementById('ipForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const ipAddressesInput = document.getElementById('ipAddresses').value;
+      const ipAddressesArray = ipAddressesInput.split(/[\s,]+/); // Memisahkan input berdasarkan koma atau spasi
+
+      const apiKey = 'c709b008c54615f30adb52d1f0fa4a882469efccc55a11c14b09796051158fe3'; // Ganti dengan kunci API Anda
+
+      try {
+        const ipInfoArray = await Promise.all(ipAddressesArray.map(async ipAddress => {
+          const ipInfo = await getIPInfo(ipAddress, apiKey);
+          return { ipAddress, ipInfo };
+        }));
+        
+        // Menampilkan hasil untuk setiap alamat IP
+        document.getElementById('resultContainer').innerHTML = ipInfoArray.map(item => {
+          console.log(item);
+          return `<h2>Informasi untuk IP ${item.ipAddress}:</h2><pre>${JSON.stringify(item.ipInfo, null, 2)}</pre>`;
+        }).join('');
+      } catch (error) {
+        document.getElementById('resultContainer').innerHTML = `<p>Gagal mengambil informasi IP: ${error.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>
